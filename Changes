@@ -1,7 +1,7 @@
 Revision history for SVG-Graph-Kit
 
-0.0401 
-    - Added Test::PodSpelling to dist testing.
+{{NEXT}}
+    - Added full compliment of dzil plugins.
 
 0.04 May 29, 2012
     - Rename the "threshold" attribute to "ticks", "xticks" and "yticks."
