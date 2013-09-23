@@ -1,4 +1,4 @@
-SVG::Graph::Kit=~/dev/Math/SVG-Graph-Kit CD=. {
+SGK=~/sandbox/github/ology/SVG-Graph-Kit CD=. {
  lib=lib/SVG/Graph {
   Kit.pm
  }
