@@ -38,7 +38,6 @@ subclass of C<SVG::Graph>.
 
 =head2 new()
 
-  $g = SVG::Graph::Kit->new(%arguments);
   $g = SVG::Graph::Kit->new();
   $g = SVG::Graph::Kit->new(data => \@numeric);
   $g = SVG::Graph::Kit->new(data => \@numeric, axis => 0);
@@ -239,7 +238,6 @@ percentile).
 
 =cut
 
-
 sub stat {
     my ($self, $dimension, $name, @args) = @_;
     my $method = $dimension . $name;
@@ -262,25 +260,12 @@ Highlight data points or areas.
 
 Draw grid lines.
 
-Add an C<SVG::Graph::polar> chart, somehow?
+Add an C<SVG::Graph::polar> chart?
 
 =head1 SEE ALSO
 
-* The code in F<t/*>.
+The code in F<t/*>.
 
-* L<SVG::Graph>
-
-=head1 COPYRIGHT
-
-Copyright Gene Boggs, All Rights Reserved
-
-=head1 LICENSE
-
-You may use this module under the terms of the BSD, Artistic, or GPL 
-licenses, any version.
-
-=head1 AUTHOR
-
-Gene Boggs E<lt>gene@cpan.orgE<gt>
+L<SVG::Graph>
 
 =cut
