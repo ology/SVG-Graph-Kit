@@ -6,6 +6,15 @@ SGK=~/sandbox/github/ology/SVG-Graph-Kit CD=. {
   00-load.t
   01-methods.t
  }
+ eg=eg {
+  multi
+  normalize-primes
+  plot-primes
+  plot-rand
+  svg-graph
+  synopsis-section
+  trial-and-error
+ }
  Changes
  dist.ini
 }
