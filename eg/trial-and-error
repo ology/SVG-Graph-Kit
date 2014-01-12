@@ -2,23 +2,25 @@
 use strict;
 use warnings;
 
+use List::MoreUtils qw(mesh);
 use Mock::Populate;
 use SVG::Graph::Kit;
 
 my $i = 0;
-my $n = 100;
-my $data = Mock::Populate::distributor(type => 'u', prec => 4, dof => 2, N => $n);
-#$data = [ map { [ ++$i, $_] } sort { $a <=> $b } @$data ];
-$data = [ map { [ ++$i, $_] } @$data ];
+my $n = 90;
+my $x = Mock::Populate::distributor(type => 'u', prec => 4, dof => 2, N => $n);
+my $y = Mock::Populate::distributor(type => 's', prec => 4, dof => 2, N => $n);
+my %data = mesh @$x, @$y;
+my @data = map { [ $_ => $data{$_} ] } keys %data;
 
 my $g = SVG::Graph::Kit->new(
-    data => $data,
-#    axis => { #xticks => 3, yticks => 3,
-#      log => 10,
-#    },
+    data => \@data,
+    axis => { #xticks => 3, yticks => 3,
+      log => 2,
+    },
     plot => {
       type => 'line', # default: scatter
-      'fill-opacity' => 0.5, # etc.
+#      'fill-opacity' => 0.5, # etc.
     },
 );
 print $g->draw;
