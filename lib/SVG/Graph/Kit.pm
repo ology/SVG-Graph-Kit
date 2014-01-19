@@ -9,6 +9,7 @@ our $VERSION = '0.04';
 use base qw(SVG::Graph);
 use SVG::Graph::Data;
 use SVG::Graph::Data::Datum;
+use Math::Trig;
 
 =head1 SYNOPSIS
 
@@ -84,7 +85,7 @@ sub new {
 
     # Move non-parent arguments to the kit.
     my %kit = ();
-    for my $arg (qw(axis data plot)) {
+    for my $arg (qw(axis data plot polar)) {
         next unless exists $args{$arg};
         $kit{$arg} = $args{$arg};
         delete $args{$arg};
@@ -112,7 +113,7 @@ sub _setup {
     # Plot the data.
     if ($args{data}) {
         # Load the graph data and use the SVG::Graph::Data object for label making.
-        $self->{graph_data} = _load_data($args{data}, $frame);
+        $self->{graph_data} = _load_data($args{data}, $frame, $args{polar});
         # Add the data to the graph.
         my %plot = (
             stroke         => $args{plot}{stroke}         || 'red',
@@ -206,15 +207,19 @@ sub _load_axis {
 }
 
 sub _load_data {
-    my ($data, $frame) = @_;
+    my ($data, $frame, $polar) = @_;
     # Create individual data points.
     my @data = ();
     for my $datum (@$data) {
+        # Set the coordinate.
+        my @coord = @$datum;
+        @coord = _to_polar($datum) if $polar;
+
         # Add our 3D data point.
         push @data, SVG::Graph::Data::Datum->new(
-            x => $datum->[0],
-            y => $datum->[1],
-            z => $datum->[2],
+            x => $coord[0],
+            y => $coord[1],
+            z => $coord[2],
         );
     }
     # Instantiate a new SVG::Graph::Data object;
@@ -222,6 +227,21 @@ sub _load_data {
     # Populate our graph with data.
     $frame->add_data($obj);
     return $obj;
+}
+
+sub _theta {
+    my $point = shift;
+#    return int(rand 359);
+    return atan2($point-[1], $point->[0]);
+}
+
+sub _to_polar {
+    my $point = shift;
+    my $r = 0;
+    $r += $_ ** 2 for @$point;
+    $r = sqrt $r;
+    my $t = _theta($point);
+    return $r, $t;
 }
 
 =head2 stat()
