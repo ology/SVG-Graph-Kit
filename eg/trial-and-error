@@ -15,13 +15,14 @@ my @data = map { [ $_ => $data{$_} ] } keys %data;
 
 my $g = SVG::Graph::Kit->new(
     data => \@data,
-    axis => { #xticks => 3, yticks => 3,
-      log => 2,
-    },
+#    axis => { #xticks => 3, yticks => 3,
+#      log => 2,
+#    },
     plot => {
       type => 'line', # default: scatter
 #      'fill-opacity' => 0.5, # etc.
     },
+    polar => 1,
 );
 print $g->draw;
 __END__
