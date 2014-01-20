@@ -2,10 +2,18 @@
 use strict;
 use warnings;
 
+use List::Util qw( max );
 use Mock::Populate;
 use SVG;
 
-my $w = 500;
+my $n = 90;
+my $x = Mock::Populate::distributor(type => 'u', prec => 4, dof => 2, N => $n);
+my $y = Mock::Populate::distributor(type => 's', prec => 4, dof => 2, N => $n);
+
+my $max = max @$x, @$y;
+my $factor = 50;
+my $w = $max * $factor;
+
 my $svg = SVG->new( width => $w, height => $w );
 
 my $g = $svg->group(
@@ -24,14 +32,14 @@ $g->rectangle(
     y      => 0,
     width  => $offset,
     height => $offset,
-    id     => 'quadrant_0x0',
+    id     => 'quadrant_2',
 );
 $g->rectangle(
     x      => $offset,
     y      => $offset,
     width  => $offset,
     height => $offset,
-    id     => 'quadrant_1x1',
+    id     => 'quadrant_4',
 );
 
 my $i = 10;
@@ -44,14 +52,10 @@ for my $j ( 0 ..  $offset / $i ) {
     );
 }
 
-my $n = 90;
-my $x = Mock::Populate::distributor(type => 'u', prec => 4, dof => 2, N => $n);
-my $y = Mock::Populate::distributor(type => 's', prec => 4, dof => 2, N => $n);
-
 for my $j (0 .. @$x - 1) {
     $g->circle(
-        cx => $x->[$j] * 10 + $offset,
-        cy => $y->[$j] * 10 + $offset,
+        cx => $x->[$j] * $factor + $offset,
+        cy => $y->[$j] * $factor + $offset,
         r  => '0.5',
         id => 'circle_' . $i . 'x' . $j,
         style => {
