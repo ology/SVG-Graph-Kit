@@ -18,8 +18,6 @@ my $g = $svg->group(
 );
 
 my $offset = $w / 2;
-my $i = 10;
-
 $g->rectangle(
     x      => 0,
     y      => 0,
@@ -35,12 +33,13 @@ $g->rectangle(
     id     => 'quadrant_1x1',
 );
 
-for my $n ( 0 .. 10 ) {
+my $i = 10;
+for my $j ( 0 .. 10 ) {
     $g->circle(
         cx => $offset,
         cy => $offset,
         r  => $i * $n,
-        id => 'circle_' . $i . '_' . $n,
+        id => 'circle_' . $i . '_' . $j,
     );
 }
 
