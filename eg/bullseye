@@ -7,9 +7,8 @@ use SVG;
 my $w = 200;
 my $svg = SVG->new( width => $w, height => $w );
 
-# Explicit element constructor to generate a group element
-my $y = $svg->group(
-    id    => 'group_y',
+my $g = $svg->group(
+    id    => 'group',
     style => {
         stroke           => 'gray',
         fill             => 'none',
@@ -21,8 +20,23 @@ my $y = $svg->group(
 my $offset = $w / 2;
 my $i = 10;
 
+$g->rectangle(
+    x      => 0,
+    y      => 0,
+    width  => $offset,
+    height => $offset,
+    id     => 'quadrant_0x0',
+);
+$g->rectangle(
+    x      => $offset,
+    y      => $offset,
+    width  => $offset,
+    height => $offset,
+    id     => 'quadrant_1x1',
+);
+
 for my $n ( 0 .. 100 ) {
-    $y->circle(
+    $g->circle(
         cx => $offset,
         cy => $offset,
         r  => $i * $n,
