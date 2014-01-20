@@ -35,7 +35,7 @@ $g->rectangle(
     id     => 'quadrant_1x1',
 );
 
-for my $n ( 0 .. 100 ) {
+for my $n ( 0 .. 10 ) {
     $g->circle(
         cx => $offset,
         cy => $offset,
