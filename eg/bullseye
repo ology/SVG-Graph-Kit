@@ -2,6 +2,7 @@
 use strict;
 use warnings;
 
+use Mock::Populate;
 use SVG;
 
 my $w = 200;
@@ -38,8 +39,21 @@ for my $j ( 0 .. 10 ) {
     $g->circle(
         cx => $offset,
         cy => $offset,
-        r  => $i * $n,
+        r  => $i * $j,
         id => 'circle_' . $i . '_' . $j,
+    );
+}
+
+my $n = 90;
+my $x = Mock::Populate::distributor(type => 'u', prec => 4, dof => 2, N => $n);
+my $y = Mock::Populate::distributor(type => 's', prec => 4, dof => 2, N => $n);
+
+for my $j (0 .. @$x - 1) {
+    $g->circle(
+        cx => $x->[$j] * 10 + $offset,
+        cy => $y->[$j] * 10 + $offset,
+        r  => 1,
+        id => 'circle_' . $i . 'x' . $j,
     );
 }
 
