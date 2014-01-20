@@ -6,14 +6,17 @@ use List::Util qw( max );
 use Mock::Populate;
 use SVG;
 
+# Get the data!
 my $n = 90;
 my $x = Mock::Populate::distributor(type => 'u', prec => 4, dof => 2, N => $n);
 my $y = Mock::Populate::distributor(type => 's', prec => 4, dof => 2, N => $n);
-
 my $max = max @$x, @$y;
-my $factor = 50;
-my $w = $max * $factor;
 
+# Set the scaling factor.
+my $factor = 50;
+
+# Get a chart instance.
+my $w = $max * $factor;
 my $svg = SVG->new( width => $w, height => $w );
 my $g = $svg->group(
     id    => 'group',
@@ -24,6 +27,7 @@ my $g = $svg->group(
         'stroke-opacity' => '0.5',
     },
 );
+
 # Add rectangular axes.
 my $offset = $w / 2;
 $g->rectangle(
