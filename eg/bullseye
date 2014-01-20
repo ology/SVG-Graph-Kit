@@ -54,6 +54,11 @@ for my $j (0 .. @$x - 1) {
         cy => $y->[$j] * 10 + $offset,
         r  => '0.5',
         id => 'circle_' . $i . 'x' . $j,
+        style => {
+            stroke         => 'black',
+            fill           => 'none',
+            'stroke-width' => '0.5',
+        },
     );
 }
 
