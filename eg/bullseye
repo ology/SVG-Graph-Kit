@@ -52,7 +52,7 @@ for my $j (0 .. @$x - 1) {
     $g->circle(
         cx => $x->[$j] * 10 + $offset,
         cy => $y->[$j] * 10 + $offset,
-        r  => 1,
+        r  => '0.5',
         id => 'circle_' . $i . 'x' . $j,
     );
 }
