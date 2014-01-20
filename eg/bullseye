@@ -15,7 +15,6 @@ my $factor = 50;
 my $w = $max * $factor;
 
 my $svg = SVG->new( width => $w, height => $w );
-
 my $g = $svg->group(
     id    => 'group',
     style => {
@@ -25,7 +24,7 @@ my $g = $svg->group(
         'stroke-opacity' => '0.5',
     },
 );
-
+# Add rectangular axes.
 my $offset = $w / 2;
 $g->rectangle(
     x      => 0,
@@ -41,7 +40,7 @@ $g->rectangle(
     height => $offset,
     id     => 'quadrant_4',
 );
-
+# Add concentric rings.
 my $i = 10;
 for my $j ( 0 ..  $offset / $i ) {
     $g->circle(
@@ -52,6 +51,7 @@ for my $j ( 0 ..  $offset / $i ) {
     );
 }
 
+# Add data-points.
 for my $j (0 .. @$x - 1) {
     $g->circle(
         cx => $x->[$j] * $factor + $offset,
