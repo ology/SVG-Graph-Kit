@@ -5,7 +5,7 @@ use warnings;
 use Mock::Populate;
 use SVG;
 
-my $w = 200;
+my $w = 500;
 my $svg = SVG->new( width => $w, height => $w );
 
 my $g = $svg->group(
@@ -35,7 +35,7 @@ $g->rectangle(
 );
 
 my $i = 10;
-for my $j ( 0 .. 10 ) {
+for my $j ( 0 ..  $offset / $i ) {
     $g->circle(
         cx => $offset,
         cy => $offset,
