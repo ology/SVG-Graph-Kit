@@ -1,0 +1,33 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+use SVG;
+
+my $w = 200;
+my $svg = SVG->new( width => $w, height => $w );
+
+# Explicit element constructor to generate a group element
+my $y = $svg->group(
+    id    => 'group_y',
+    style => {
+        stroke           => 'gray',
+        fill             => 'none',
+        'stroke-width'   => '0.5',
+        'stroke-opacity' => '0.5',
+    },
+);
+
+my $offset = $w / 2;
+my $i = 10;
+
+for my $n ( 0 .. 100 ) {
+    $y->circle(
+        cx => $offset,
+        cy => $offset,
+        r  => $i * $n,
+        id => 'circle_' . $i . '_' . $n,
+    );
+}
+
+print $svg->xmlify;
