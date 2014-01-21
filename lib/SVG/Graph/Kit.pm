@@ -232,7 +232,7 @@ sub _load_data {
 sub _theta {
     my $point = shift;
 #    return int(rand 359);
-    return atan2($point-[1], $point->[0]);
+    return atan2($point->[1], $point->[0]);
 }
 
 sub _to_polar {
