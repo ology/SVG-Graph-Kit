@@ -4,7 +4,7 @@ package SVG::Graph::Kit;
 use strict;
 use warnings;
 
-our $VERSION = '0.04';
+our $VERSION = '0.0401';
 
 use base qw(SVG::Graph);
 use SVG::Graph::Data;
