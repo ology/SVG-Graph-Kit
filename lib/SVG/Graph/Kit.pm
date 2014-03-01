@@ -11,6 +11,10 @@ use SVG::Graph::Data;
 use SVG::Graph::Data::Datum;
 use Math::Trig;
 
+=head1 NAME
+
+Simplified data plotting with SVG
+
 =head1 SYNOPSIS
 
   use SVG::Graph::Kit;
