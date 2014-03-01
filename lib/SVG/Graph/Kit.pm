@@ -13,7 +13,7 @@ use Math::Trig;
 
 =head1 NAME
 
-Simplified data plotting with SVG
+SVG::Graph::Kit - Simplified data plotting with SVG
 
 =head1 SYNOPSIS
 
