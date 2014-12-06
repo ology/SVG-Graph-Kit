@@ -11,6 +11,7 @@ my $data = [ [ 1,  2, 0 ],
              [ 6, 13, 5 ], ];
 my $g = SVG::Graph::Kit->new(data => $data);
 print $g->draw;
+__END__
 my $n;
 for my $dim (qw(x y z)) {
   for my $stat (qw(min max mean mode median range stdv percentile)) {
