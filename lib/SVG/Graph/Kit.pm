@@ -1,19 +1,20 @@
 package SVG::Graph::Kit;
-# ABSTRACT: Simplified data plotting with SVG
+# ABSTRACT: Data plotting with SVG
 
 use strict;
 use warnings;
 
-our $VERSION = '0.0401';
+our $VERSION = '0.0402';
 
-use base qw(SVG::Graph);
+use parent qw(SVG::Graph);
+
 use SVG::Graph::Data;
 use SVG::Graph::Data::Datum;
 use Math::Trig;
 
 =head1 NAME
 
-SVG::Graph::Kit - Simplified data plotting with SVG
+SVG::Graph::Kit - Data plotting with SVG
 
 =head1 SYNOPSIS
 
