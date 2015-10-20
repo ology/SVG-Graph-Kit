@@ -1,4 +1,4 @@
-SVG-Graph-Kit
-=============
+SVG::Graph::Kit
+===============
 
-Simplified data plotting with SVG
+Data plotting with SVG
