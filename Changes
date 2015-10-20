@@ -1,6 +1,8 @@
 Revision history for SVG-Graph-Kit
 
 {{$NEXT}}
+    - Use parent instead of base.
+    - Update ABSTRACT and NAME sections.
 
 0.0401 MAR 01, 2014
     - Added full compliment of dzil plugins.
