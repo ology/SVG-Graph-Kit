@@ -1,6 +1,8 @@
 Revision history for SVG-Graph-Kit
 
-{{NEXT}}
+{{$NEXT}}
+
+0.0401 MAR 01, 2014
     - Added full compliment of dzil plugins.
     - Replaced the missing NAME section in the POD. Oof!
 
