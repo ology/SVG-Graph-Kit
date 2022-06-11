@@ -1,12 +1,14 @@
-#!perl -T
+#!perl
 use strict;
 use warnings;
+
 use Test::More;
+use Test::Exception;
 
 use_ok 'SVG::Graph::Kit';
 
-my $g = eval { SVG::Graph::Kit->new };
-isa_ok $g, 'SVG::Graph::Kit', 'no arguments';
+my $g = new_ok 'SVG::Graph::Kit';
+
 my $data = [ [ 1,  2,  0 ],
              [ 3,  5,  1 ],
              [ 4,  7,  2 ],
@@ -16,11 +18,8 @@ my $data = [ [ 1,  2,  0 ],
              [ 8, 19, 13 ],
              [ 9, 23, 21 ],
              [10, 29, 34 ] ];
-$g = SVG::Graph::Kit->new(data => $data); # TODO Look for /<g id="scatter\w+">/ and axis in draw()
-#$g = SVG::Graph::Kit->new(axis => 0); # TODO ~! /<g id="axis\w+">/ in draw()
-#$g = SVG::Graph::Kit->new(axis => 1); # TODO ~= /<g id="axis\w+">/ in draw()
-#$g = SVG::Graph::Kit->new(axis => { stroke => 'blue' });
-isa_ok $g, 'SVG::Graph::Kit';
+
+$g = new_ok 'SVG::Graph::Kit' => [ data => $data ];
 
 # Test statistics calls.
 for my $dim (qw(x y z)) {
@@ -31,8 +30,8 @@ for my $dim (qw(x y z)) {
     }
 }
 
-my $d = eval { $g->draw };
-ok !$@, 'draw';
+lives_ok { $g->draw } 'draw lives';
+
 done_testing();
 
 __END__
