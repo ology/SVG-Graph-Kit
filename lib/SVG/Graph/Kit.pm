@@ -129,8 +129,7 @@ sub _setup {
 sub _load_axis {
     my($self, $data, $axis) = @_;
 
-    # Initialize an empty axis unless given a hashref.
-    $axis = {} unless ref $axis eq 'HASH';
+    $axis ||= {};
 
     # Set the default properties and user override.
     my %axis = (
