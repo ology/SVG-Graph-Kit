@@ -35,8 +35,8 @@ SVG::Graph::Kit - Data plotting with SVG
 =head1 DESCRIPTION
 
 An C<SVG::Graph::Kit> object is an automated data plotter that is a
-subclass of L<SVG::Graph> (which unfortuantely rotates the x-axis
-tick lables 90 degrees).
+subclass of L<SVG::Graph> (which unfortunately rotates the x-axis
+tick labels 90 degrees).
 
 =head1 METHODS
 
@@ -238,27 +238,6 @@ sub _to_polar {
     return $r, $t;
 }
 
-=head2 stat()
-
-  $g->stat($dimension, $name);
-  $g->stat('x', 'mean');
-  $g->stat('y', 'stdv');
-  $g->stat('z', 'percentile');
-  # etc.
-
-This method is a direct call to the appropriate C<SVG::Graph::Data>
-"x-method" (i.e. min, max, mean, mode, median, range, stdv and
-percentile).
-
-=cut
-
-sub stat {
-    my ($self, $dimension, $name, @args) = @_;
-    my $method = $dimension . $name;
-    return $self->{graph_data}->$method(@args);
-}
-
-1;
 __END__
 
 =head1 TO DO
