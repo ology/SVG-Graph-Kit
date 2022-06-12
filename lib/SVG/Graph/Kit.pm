@@ -35,7 +35,8 @@ SVG::Graph::Kit - Data plotting with SVG
 =head1 DESCRIPTION
 
 An C<SVG::Graph::Kit> object is an automated data plotter that is a
-subclass of C<SVG::Graph>.
+subclass of L<SVG::Graph> (which unfortuantely rotates the x-axis
+tick lables 90 degrees).
 
 =head1 METHODS
 
