@@ -21,10 +21,10 @@ SVG::Graph::Kit - Data plotting with SVG
 
   use SVG::Graph::Kit;
 
-  my $data = [ [ 2, 0 ],
-               [ 3, 1 ],
-               [ 5, 1 ],
-               [ 7, 2 ],
+  my $data = [ [  2, 0 ],
+               [  3, 1 ],
+               [  5, 1 ],
+               [  7, 2 ],
                [ 11, 3 ],
                [ 13, 5 ], ];
 
