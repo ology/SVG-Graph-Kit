@@ -217,6 +217,7 @@ sub _load_axis {
 
 sub _load_data {
     my ($data, $frame, $polar) = @_;
+
     # Create individual data points.
     my @data = ();
     for my $datum (@$data) {
@@ -231,8 +232,10 @@ sub _load_data {
             z => $coord[2],
         );
     }
+
     # Instantiate a new SVG::Graph::Data object;
     my $obj = SVG::Graph::Data->new(data => \@data);
+
     # Populate our graph with data.
     $frame->add_data($obj);
     return $obj;
