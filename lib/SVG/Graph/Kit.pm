@@ -1,5 +1,6 @@
 package SVG::Graph::Kit;
-# ABSTRACT: Data plotting with SVG
+
+# ABSTRACT: Simplified SVG data plotting
 
 use strict;
 use warnings;
