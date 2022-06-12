@@ -58,7 +58,7 @@ tick labels 90 degrees).
     },
     axis => {
       'stroke-width' => 2, # etc.
-      ticks => scalar @$data, # default: 30
+      ticks => scalar @$LoL,
     },
   );
 
