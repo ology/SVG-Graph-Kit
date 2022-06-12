@@ -21,12 +21,12 @@ SVG::Graph::Kit - Data plotting with SVG
 
   use SVG::Graph::Kit;
 
-  my $data = [ [ 1,  2, 0 ],
-               [ 2,  3, 1 ],
-               [ 3,  5, 1 ],
-               [ 4,  7, 2 ],
-               [ 5, 11, 3 ],
-               [ 6, 13, 5 ], ];
+  my $data = [ [ 2, 0 ],
+               [ 3, 1 ],
+               [ 5, 1 ],
+               [ 7, 2 ],
+               [ 11, 3 ],
+               [ 13, 5 ], ];
 
   my $g = SVG::Graph::Kit->new(data => $data);
 
