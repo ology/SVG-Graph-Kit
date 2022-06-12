@@ -40,9 +40,8 @@ tick lables 90 degrees).
 
 =head1 METHODS
 
-=head2 new()
+=head2 new
 
-  $g = SVG::Graph::Kit->new();
   $g = SVG::Graph::Kit->new(data => \@LoL);
   $g = SVG::Graph::Kit->new(data => \@LoL, axis => 0);
   $g = SVG::Graph::Kit->new(
@@ -65,19 +64,13 @@ tick lables 90 degrees).
 
 Return a new C<SVG::Graph::Kit> instance.
 
-Optional arguments:
+Arguments:
 
   data => Numeric vectors (the datapoints)
   plot => Chart type and data rendering properties
   axis => Axis rendering properties or 0 for off
 
-Except for the C<plot type>, C<axis =E<gt> 0> and C<axis ticks>, the
-C<plot> and C<axis> arguments are ordinary CSS, 'a la C<SVG::Graph>.
-
-The C<plot type> is given in C<SVG::Graph>.  C<axis =E<gt> 0> turns
-off the rendering of the axis.  The C<axis ticks>, C<xticks> and
-C<yticks> values represent the number of labeled tick marks displayed
-on a scaled graph axis.
+C<axis =E<gt> 0> turns off the rendering of the axis.
 
 =cut
 
