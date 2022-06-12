@@ -130,7 +130,7 @@ sub _setup {
     }
 
     # Handle the axis unless it's set to 0.
-    if (not(exists $args{axis}) or exists $args{axis} and $args{axis}) {
+    if (!exists $args{axis} || (exists $args{axis} && $args{axis})) {
         my %axis = $self->_load_axis($args{data}, $args{axis});
         $frame->add_glyph('axis', %axis);
     }
@@ -140,7 +140,7 @@ sub _load_axis {
     my($self, $data, $axis) = @_;
 
     # Initialize an empty axis unless given a hashref.
-    $axis = {} if not ref $axis eq 'HASH';
+    $axis = {} unless ref $axis eq 'HASH';
 
     # Set the default properties and user override.
     my %axis = (
@@ -163,25 +163,25 @@ sub _load_axis {
 
     # Compute scale factors.
     my ($xscale, $yscale) = (1, 1);
-    if ($data and $self->{graph_data}->xmax - $self->{graph_data}->xmin > $axis{xticks}) {
+    if ($data && ($self->{graph_data}->xmax - $self->{graph_data}->xmin) > $axis{xticks}) {
         # Round to the integer, i.e. 0 decimal places.
         $xscale = sprintf '%.0f', $self->{graph_data}->xmax / $axis{xticks};
     }
-    if ($data and $self->{graph_data}->ymax - $self->{graph_data}->ymin > $axis{yticks}) {
+    if ($data && ($self->{graph_data}->ymax - $self->{graph_data}->ymin) > $axis{yticks}) {
         # Round to the integer, i.e. 0 decimal places.
         $yscale = sprintf '%.0f', $self->{graph_data}->ymax / $axis{yticks};
     }
 
     # Use absolute_ticks if no tick mark setting is provided.
-    unless (defined $axis{x_absolute_ticks} or defined $axis{x_fractional_ticks}) {
+    unless (defined $axis{x_absolute_ticks} || defined $axis{x_fractional_ticks}) {
         $axis{x_absolute_ticks} = $xscale;
     }
-    unless (defined $axis{y_absolute_ticks} or defined $axis{y_fractional_ticks}) {
+    unless (defined $axis{y_absolute_ticks} || defined $axis{y_fractional_ticks}) {
         $axis{y_absolute_ticks} = $yscale;
     }
 
     # Use increments of 1 to data-max for ticks if none are provided.
-    if ($data and !defined $axis{x_tick_labels} and !defined $axis{x_intertick_labels}) {
+    if ($data && !defined $axis{x_tick_labels} && !defined $axis{x_intertick_labels}) {
         if ($xscale > 1) {
             $axis{x_tick_labels} = [ $self->{graph_data}->xmin ];
             push @{ $axis{x_tick_labels} }, $_ * $xscale for 1 .. $axis{ticks};
@@ -189,8 +189,10 @@ sub _load_axis {
         else {
             $axis{x_tick_labels} = [ $self->{graph_data}->xmin .. $self->{graph_data}->xmax ];
         }
+        # XXX This is a lame hack
+        $axis{x_intertick_labels} = [ map { '' } $self->{graph_data}->ymin .. $self->{graph_data}->ymax ];
     }
-    if ($data and !defined $axis{y_tick_labels} and !defined $axis{y_intertick_labels}) {
+    if ($data && !defined $axis{y_tick_labels} && !defined $axis{y_intertick_labels}) {
         if ($yscale > 1) {
             $axis{y_tick_labels} = [ $self->{graph_data}->ymin ];
             push @{ $axis{y_tick_labels} }, $_ * $yscale for 1 .. $axis{ticks};
@@ -198,6 +200,8 @@ sub _load_axis {
         else {
             $axis{y_tick_labels} = [ $self->{graph_data}->ymin .. $self->{graph_data}->ymax ];
         }
+        # XXX This is also a lame hack
+        $axis{y_intertick_labels} = [ map { '' } $self->{graph_data}->ymin .. $self->{graph_data}->ymax ];
     }
 
     # Remove keys not used by parent module.
@@ -274,7 +278,7 @@ __END__
 
 =head1 TO DO
 
-Allow log scaling.
+Log scaling.
 
 Position axis origin.
 
@@ -289,7 +293,7 @@ Add an C<SVG::Graph::polar> chart?
 
 =head1 SEE ALSO
 
-The code in F<t/*>.
+The F<t/*> tests.
 
 L<SVG::Graph>
 
