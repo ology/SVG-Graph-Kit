@@ -1,6 +1,8 @@
 Revision history for SVG-Graph-Kit
 
 {{$NEXT}}
+
+0.0403 2022-06-11 19:19:13
     - Use parent instead of base.
     - Improve documentation.
     - Add a temporary hack to quiet *_intertick_label warnings.
