@@ -179,7 +179,7 @@ sub _load_axis {
             $axis{x_tick_labels} = [ $self->{graph_data}->xmin .. $self->{graph_data}->xmax ];
         }
         # XXX This is a lame hack
-        $axis{x_intertick_labels} = [ map { '' } $self->{graph_data}->ymin .. $self->{graph_data}->ymax ];
+        $axis{x_intertick_labels} = [ map { '' } $self->{graph_data}->xmin .. $self->{graph_data}->xmax ];
     }
     if ($data && !defined $axis{y_tick_labels} && !defined $axis{y_intertick_labels}) {
         if ($yscale > 1) {
