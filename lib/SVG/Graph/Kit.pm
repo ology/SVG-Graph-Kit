@@ -245,9 +245,6 @@ Log scaling.
 
 Position axis origin.
 
-Call any C<Statistics::Descriptive> method, not just those given by
-C<SVG::Graph>.
-
 Highlight data points or areas.
 
 Draw grid lines.
