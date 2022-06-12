@@ -144,12 +144,12 @@ sub _load_axis {
 
     # Set the default properties and user override.
     my %axis = (
-        x_intercept => 0,
-        y_intercept => 0,
-        stroke => 'gray',
+        x_intercept    => 0,
+        y_intercept    => 0,
+        stroke         => 'gray',
         'stroke-width' => 2,
-        ticks => 30, # Max data per axis
-        log => 0,
+        ticks          => 30, # Max data per axis
+        log            => 0,
         %$axis, # User override
     );
 
