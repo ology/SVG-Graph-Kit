@@ -5,7 +5,7 @@ package SVG::Graph::Kit;
 use strict;
 use warnings;
 
-our $VERSION = '0.0402';
+our $VERSION = '0.0403';
 
 use parent qw(SVG::Graph);
 
