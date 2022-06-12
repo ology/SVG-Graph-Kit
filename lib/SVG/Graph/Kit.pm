@@ -217,7 +217,7 @@ sub _load_data {
         );
     }
 
-    # Instantiate a new SVG::Graph::Data object;
+    # Instantiate a new SVG::Graph::Data object
     my $obj = SVG::Graph::Data->new(data => \@data);
 
     # Populate our graph with data.
