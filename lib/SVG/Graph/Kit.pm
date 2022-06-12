@@ -55,7 +55,7 @@ tick labels 90 degrees).
     margin => 20,
     # SVG::Graph::Kit args:
     data => \@LoL,
-    xcol => 1, # data column to use for the x-axis
+    xcol => 0, # data column to use for the x-axis
     ycol => 3, # data column to use for the y-axis
     plot => {
       type => 'line', # default: scatter
