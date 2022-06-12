@@ -2,8 +2,6 @@
 use strict;
 use warnings;
 
-use lib '/home/gene/tmp/SVG-Graph-0.02/lib';
-use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(SVG-Graph-Kit);
 use SVG::Graph::Kit;
 
 my $data = [ [ 1,  2, 0 ],
