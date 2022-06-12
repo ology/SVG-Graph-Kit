@@ -5,20 +5,8 @@ use warnings;
 use lib map { "$ENV{HOME}/sandbox/$_/lib" } qw(SVG-Graph-Kit);
 use SVG::Graph::Kit;
 
-my $data = [ [ 1,  2,  0 ],
-             [ 3,  5,  1 ],
-             [ 4,  7,  2 ],
-             [ 5, 11,  3 ],
-             [ 6, 13,  5 ],
-             [ 7, 17,  8 ],
-             [ 8, 19, 13 ],
-             [ 9, 23, 21 ],
-             [10, 29, 34 ] ];
+my $data = [ map { [ $_, $_ * $_ ] } 1 .. 100 ];
 
-my $g = SVG::Graph::Kit->new(
-    data => $data,
-    xcol => 1,
-    ycol => 2,
-);
+my $g = SVG::Graph::Kit->new(data => $data);
 
 print $g->draw;
