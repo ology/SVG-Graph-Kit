@@ -49,9 +49,14 @@ tick labels 90 degrees).
     axis => { xticks => 10, yticks => 20 },
   );
   $g = SVG::Graph::Kit->new(
+    # SVG::Graph args:
     width  => 300,
-    height => 300, margin => 20,
+    height => 300,
+    margin => 20,
+    # SVG::Graph::Kit args:
     data   => \@LoL,
+    xcol   => 1, # data column to use for the x-axis
+    ycol   => 3, # data column to use for the y-axis
     plot   => {
       type => 'line', # default: scatter
       'fill-opacity' => 0.5, # etc.
@@ -66,11 +71,11 @@ Return a new C<SVG::Graph::Kit> instance.
 
 Arguments:
 
-  data => Numeric vectors (the datapoints)
-  plot => Chart type and data rendering properties
-  axis => Axis rendering properties or 0 for off
+  data: Numeric vectors (the datapoints)
+  plot: Chart type and data rendering properties
+  axis: Axis rendering properties or 0 for off
 
-C<axis =E<gt> 0> turns off the rendering of the axis.
+Setting B<axis> to C<0> turns off the rendering of the axis.
 
 =cut
 
@@ -80,7 +85,7 @@ sub new {
 
     # Move non-parent arguments to the kit.
     my %kit = ();
-    for my $arg (qw(axis data plot polar)) {
+    for my $arg (qw(axis data plot polar xcol ycol)) {
         next unless exists $args{$arg};
         $kit{$arg} = $args{$arg};
         delete $args{$arg};
@@ -108,7 +113,7 @@ sub _setup {
     # Plot the data.
     if ($args{data}) {
         # Load the graph data and use the SVG::Graph::Data object for label making.
-        $self->{graph_data} = _load_data($args{data}, $frame, $args{polar});
+        $self->{graph_data} = _load_data($args{data}, $frame, $args{xcol}, $args{ycol});
         # Add the data to the graph.
         my %plot = (
             stroke         => $args{plot}{stroke}         || 'red',
@@ -197,20 +202,18 @@ sub _load_axis {
 }
 
 sub _load_data {
-    my ($data, $frame, $polar) = @_;
+    my ($data, $frame, $xcol, $ycol) = @_;
+
+    $xcol //= 0;
+    $ycol //= 1;
 
     # Create individual data points.
     my @data = ();
     for my $datum (@$data) {
-        # Set the coordinate.
-        my @coord = @$datum;
-        @coord = _to_polar($datum) if $polar;
-
-        # Add our 3D data point.
         push @data, SVG::Graph::Data::Datum->new(
-            x => $coord[0],
-            y => $coord[1],
-            z => $coord[2],
+            x => $datum->[$xcol],
+            y => $datum->[$ycol],
+            z => $datum->[$xcol], # XXX Required by SVG::Graph
         );
     }
 
