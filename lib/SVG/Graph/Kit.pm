@@ -44,7 +44,6 @@ subclass of C<SVG::Graph>.
   $g = SVG::Graph::Kit->new();
   $g = SVG::Graph::Kit->new(data => \@numeric);
   $g = SVG::Graph::Kit->new(data => \@numeric, axis => 0);
-  # Custom:
   $g = SVG::Graph::Kit->new(
     data => \@numeric,
     axis => { xticks => 10, yticks => 20 },
@@ -59,7 +58,6 @@ subclass of C<SVG::Graph>.
     axis => {
       'stroke-width' => 2, # etc.
       ticks => scalar @$data, # default: 30
-      log => 2, # Default factor 10
     },
   );
 
@@ -146,17 +144,12 @@ sub _load_axis {
         stroke         => 'gray',
         'stroke-width' => 2,
         ticks          => 30, # Max data per axis
-        log            => 0,
         %$axis, # User override
     );
 
     # Set the number of ticks to show on each axis.
     $axis{xticks} ||= $axis{ticks};
     $axis{yticks} ||= $axis{ticks};
-
-    # Set the logarithmic scaling factor.
-    $axis{xlog} ||= $axis{log};
-    $axis{ylog} ||= $axis{log};
 
     # Compute scale factors.
     my ($xscale, $yscale) = (1, 1);
@@ -205,9 +198,6 @@ sub _load_axis {
     delete $axis{ticks};
     delete $axis{xticks};
     delete $axis{yticks};
-    delete $axis{log};
-    delete $axis{xlog};
-    delete $axis{ylog};
 
     return %axis;
 }
