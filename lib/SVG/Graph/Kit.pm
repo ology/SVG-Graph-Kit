@@ -279,7 +279,7 @@ Highlight data points or areas.
 
 Draw grid lines.
 
-Add an C<SVG::Graph::polar> chart?
+Plot polar axes for polar plots.
 
 =head1 SEE ALSO
 
