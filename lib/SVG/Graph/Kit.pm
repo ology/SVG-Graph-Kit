@@ -42,16 +42,17 @@ subclass of C<SVG::Graph>.
 =head2 new()
 
   $g = SVG::Graph::Kit->new();
-  $g = SVG::Graph::Kit->new(data => \@numeric);
-  $g = SVG::Graph::Kit->new(data => \@numeric, axis => 0);
+  $g = SVG::Graph::Kit->new(data => \@LoL);
+  $g = SVG::Graph::Kit->new(data => \@LoL, axis => 0);
   $g = SVG::Graph::Kit->new(
-    data => \@numeric,
+    data => \@LoL,
     axis => { xticks => 10, yticks => 20 },
   );
   $g = SVG::Graph::Kit->new(
-    width => 300, height => 300, margin => 20,
-    data => [[0,2], [1,3] ... ],
-    plot => {
+    width  => 300,
+    height => 300, margin => 20,
+    data   => \@LoL,
+    plot   => {
       type => 'line', # default: scatter
       'fill-opacity' => 0.5, # etc.
     },
